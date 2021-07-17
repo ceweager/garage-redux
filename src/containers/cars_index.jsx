@@ -22,13 +22,13 @@ class CarsIndex extends Component {
 
   render() {
     return (
-      <div className="container" style={{ display: "flex", justifyContent: "center" }}>
+      <div className="view-container" style={{ display: "flex", justifyContent: "center" }}>
         <NavBar>
           <Link to="/cars/new" component={CarsNew}>
             Add Car
           </Link>
         </NavBar>
-        <div>
+        <div className="list-container">
           {this.props.cars.map((car) => {
             return (
               <Link to={`/cars/${car.id}`} key={car.id}>

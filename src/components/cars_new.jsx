@@ -32,13 +32,13 @@ class CarsNew extends Component {
   render() {
     console.log(this.renderField);
     return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div className="view-container" style={{ display: "flex", justifyContent: "center" }}>
         <NavBar>
           <Link to="/" component={CarsIndex}>
             Back
           </Link>
         </NavBar>
-        <div>
+        <div className="form-container">
           <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
             <Field
               label="Brand"

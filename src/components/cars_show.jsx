@@ -39,13 +39,13 @@ class CarsShow extends Component {
     }
 
     return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div className="view-container" style={{ display: "flex", justifyContent: "center" }}>
         <NavBar>
           <Link to="/" component={CarsIndex}>
             Back
           </Link>
         </NavBar>
-        <div style={{ width: "300px" }}>
+        <div className="car-container">
           <Car car={this.props.car}>
             <h3>{this.props.car.plate}</h3>
             <Link to={`/cars/${this.props.car.id}`} onClick={this.handleClick}>

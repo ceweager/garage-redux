@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class NavBar extends Component {
   render() {
     return (
-      <div style={{ width: "200px" }}>
+      <div className="aside">
         <img src="" alt="placeholder" />
         <img src="" alt="lewagon symbol" />
         <h1>{this.props.garage}</h1>
