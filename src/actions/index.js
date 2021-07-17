@@ -35,3 +35,15 @@ export function fetchCar(id) {
     payload: promise
   };
 }
+
+export function deleteCar(id, callback) {
+  const promise = fetch(`https://wagon-garage-api.herokuapp.com/cars/${id}`, {
+    method: 'Delete'
+  })
+    .then(response => response.json())
+    .then(callback);
+  return {
+    type: "DELETE_CAR",
+    payload: promise
+  }
+}

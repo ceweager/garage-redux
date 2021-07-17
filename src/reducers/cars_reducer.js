@@ -4,6 +4,8 @@ export default function (state = {}, action) {
       return action.payload;
     case 'FETCH_CAR':
       return [action.payload];
+    case 'DELETE_CAR':
+      return [action.payload];
     default:
       return state;
   }

@@ -2,26 +2,35 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchCar } from '../actions';
-import { deleteCar } from '../actions';
+import { fetchCar, deleteCar } from '../actions';
 import Car from '../components/car';
 import CarsIndex from '../containers/cars_index';
 import NavBar from '../components/navbar';
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { fetchCar: fetchCar },
-    { deleteCar: deleteCar }
+    { fetchCar: fetchCar, deleteCar: deleteCar },
     dispatch
   );
 }
 
 class CarsShow extends Component {
+
   componentDidMount() {
     if (!this.props.car) {
       this.props.fetchCar(this.props.match.params.id);
     }
   }
+
+
+  handleClick = () => {
+    this.props.deleteCar(this.props.match.params.id, this.returnHome);
+  }
+
+  returnHome = (post) => {
+    this.props.history.push('/');
+    return post;
+  };
 
   render() {
     console.log(this.props);
@@ -39,12 +48,10 @@ class CarsShow extends Component {
         <div style={{ width: "300px" }}>
           <Car car={this.props.car}>
             <h3>{this.props.car.plate}</h3>
-            <Link to={`/cars/${this.props.car.id}`}>
+            <Link to={`/cars/${this.props.car.id}`} onClick={this.handleClick}>
               Delete
             </Link>
           </Car>
-          <div>
-          </div>
         </div>
       </div>
     );
