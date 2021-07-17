@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Car from '../components/car';
 import CarsNew from '../components/cars_new';
+import NavBar from '../components/navbar';
 import { getCars } from '../actions';
 
 function mapDispatchToProps(dispatch) {
@@ -21,16 +22,12 @@ class CarsIndex extends Component {
 
   render() {
     return (
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div>
-          <img src="" alt="placeholder" />
-          <img src="" alt="lewagon symbol" />
-          <h1>{this.props.garage}</h1>
-          <p>Our garage is the best. Great prices, always on time, we are amazing.</p>
+      <div className="container" style={{ display: "flex", justifyContent: "center" }}>
+        <NavBar>
           <Link to="/cars/new" component={CarsNew}>
-            Add a car
+            Add Car
           </Link>
-        </div>
+        </NavBar>
         <div>
           {this.props.cars.map((car) => {
             return (
