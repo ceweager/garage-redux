@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import { createCar } from '../actions';
 
+
 class CarsNew extends Component {
-
-
   onSubmit = (values) => {
     this.props.createCar(values, this.generatePost);
   }
@@ -16,21 +15,22 @@ class CarsNew extends Component {
     return post;
   };
 
-  renderField = (field) => {
+  renderField = ({ input, label, type, meta: { touched, error, warning } }) => {
     return (
       <div className="form-group">
-        <label htmlFor="field.label">{field.label}</label>
+        <label htmlFor="field.label">{label}</label>
         <input
           className="form-control"
-          type={field.type}
-          {...field.input}
+          type={type}
+          {...input}
         />
+        {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
       </div>
     );
   }
 
   render() {
-    console.log(this.renderField);
+    const required = value => value ? undefined : 'Required';
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -39,24 +39,28 @@ class CarsNew extends Component {
             name="brand"
             type="text"
             component={this.renderField}
+            validate={required}
           />
           <Field
             label="model"
             name="model"
             type="text"
             component={this.renderField}
+            validate={required}
           />
           <Field
             label="owner"
             name="owner"
             type="text"
             component={this.renderField}
+            validate={required}
           />
           <Field
             label="plate"
             name="plate"
             type="text"
             component={this.renderField}
+            validate={required}
           />
           <button type="submit">Create Car</button>
         </form>
